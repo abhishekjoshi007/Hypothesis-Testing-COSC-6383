@@ -1,4 +1,4 @@
-time,precip_mm_per_day,temp_degC,sea_level_pressure_hpa,relative_humidity_pct,co2_ppm,mei
+time,precipitation_mm,temperature_c,sea_level_pressure_hpa,relative_humidity_pct,co2_ppm,mei
 2000-01-01,2.4742,17.42,1019.42126,70.04032,369.45,-1.25
 2000-02-01,1.5577,20.27,1018.78174,72.17242,369.71,-1.26
 2000-03-01,2.48,22.46,1013.4429,76.563545,370.75,-1.37
