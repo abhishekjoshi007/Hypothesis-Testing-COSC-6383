@@ -1,0 +1,2 @@
+Test,U,p_value,Monsoon_n,Temperate_n,Monsoon_SI_mean,Temperate_SI_mean,Cliffs_delta,Used_common_years
+Mann–Whitney U (Monsoon>Temperate),2.0,0.6666666666666666,2,2,2.027547462780738,1.86083195550704,0.0,True

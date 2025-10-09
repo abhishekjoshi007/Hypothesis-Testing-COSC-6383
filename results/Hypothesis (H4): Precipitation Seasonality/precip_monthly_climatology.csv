@@ -1,0 +1,49 @@
+City,Regime,Month,MonthlyMean_mm
+New Delhi,Monsoon,1,21.611321928
+New Delhi,Monsoon,2,21.976750272560004
+New Delhi,Monsoon,3,19.17426021
+New Delhi,Monsoon,4,14.128854263200001
+New Delhi,Monsoon,5,42.5124103096
+New Delhi,Monsoon,6,83.62642888
+New Delhi,Monsoon,7,214.44028224000002
+New Delhi,Monsoon,8,191.35028483999997
+New Delhi,Monsoon,9,117.58711672
+New Delhi,Monsoon,10,16.566407857599998
+New Delhi,Monsoon,11,3.24882074448
+New Delhi,Monsoon,12,8.1601274606
+Corpus Christi,Monsoon,1,2.8303
+Corpus Christi,Monsoon,2,2.092364
+Corpus Christi,Monsoon,3,2.3413720000000002
+Corpus Christi,Monsoon,4,2.6671359999999997
+Corpus Christi,Monsoon,5,3.953752
+Corpus Christi,Monsoon,6,3.5690319999999995
+Corpus Christi,Monsoon,7,3.527816
+Corpus Christi,Monsoon,8,3.1469959999999997
+Corpus Christi,Monsoon,9,4.2587720000000004
+Corpus Christi,Monsoon,10,3.3884879999999997
+Corpus Christi,Monsoon,11,3.17164
+Corpus Christi,Monsoon,12,2.422216
+San Francisco,Temperate,1,96.94182228551999
+San Francisco,Temperate,2,88.509119272
+San Francisco,Temperate,3,76.70332836
+San Francisco,Temperate,4,39.176964016
+San Francisco,Temperate,5,13.5197050736
+San Francisco,Temperate,6,3.91447563932
+San Francisco,Temperate,7,0.16372279972
+San Francisco,Temperate,8,0.2468459792
+San Francisco,Temperate,9,2.8059672686800003
+San Francisco,Temperate,10,28.567547821319998
+San Francisco,Temperate,11,49.67056564000001
+San Francisco,Temperate,12,126.409757028
+Chicago,Temperate,1,48.31012688
+Chicago,Temperate,2,48.7822204
+Chicago,Temperate,3,62.78137788
+Chicago,Temperate,4,90.46058144
+Chicago,Temperate,5,117.14911991999999
+Chicago,Temperate,6,107.02029172
+Chicago,Temperate,7,110.70035448
+Chicago,Temperate,8,101.86518931999998
+Chicago,Temperate,9,79.47265668
+Chicago,Temperate,10,94.1815942
+Chicago,Temperate,11,59.59303852
+Chicago,Temperate,12,57.312469639999996
