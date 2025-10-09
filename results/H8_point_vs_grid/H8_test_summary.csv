@@ -1,0 +1,2 @@
+n_cities,R2_Temp_mean,R2_Precip_mean,RMSE_Temp_mean,RMSE_Precip_mean,p_wilcoxon_R2_Temp>Precip,p_ttest_R2_Temp>Precip,p_wilcoxon_RMSE_Temp<Precip,p_ttest_RMSE_Temp<Precip
+4,0.9993214763097135,0.8787360211516497,0.09281728273574412,23.506835022092304,0.5625,0.1955011094780078,0.0625,0.1955010653284018
