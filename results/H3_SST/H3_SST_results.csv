@@ -1,0 +1,8 @@
+City,DominantFreq(cycles/yr),Power@1cyc/yr,Rayleigh_p,Amplitude(°C)
+New York,1.0,1812.205,1.0,24.52
+Mumbai,1.0,44.0975,1.0,6.23
+Corpus Christi,1.0,718.9156,1.0,15.47
+Columbus,1.0,1858.8948,1.0,24.42
+San Francisco,1.0,241.502,1.0,8.69
+New Delhi,1.0,1006.778,1.0,19.37
+Chicago,1.0,2302.1371,1.0,27.27
