@@ -1,0 +1,2 @@
+Test,Statistic,p_value,Effect_Cliffs_delta,Coastal_n,Inland_n,Coastal_mean,Inland_mean,Coastal_mean_CI95_low,Coastal_mean_CI95_high,Inland_mean_CI95_low,Inland_mean_CI95_high,Used_common_years,New_York_included_in_stats,New_York_n
+Mann–Whitney U,30.0,4.205832633293976e-17,-0.976,50,50,13.2146346,24.295118027399994,12.22465864575,14.21147960575,23.020519229650006,25.610148442939998,True,False,0
