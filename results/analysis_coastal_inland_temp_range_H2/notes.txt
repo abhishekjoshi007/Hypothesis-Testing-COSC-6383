@@ -1,0 +1,93 @@
+Here’s a clear explanation of how your “Coastal vs Inland Temperature Range” hypothesis has been proved and what kind of counter-questions (or challenges) can reasonably be raised about your result.
+
+✅ Hypothesis Recap
+
+Statement:
+
+Coastal cities have smaller annual temperature ranges than inland cities.
+
+Meaning:
+We expect coastal locations (closer to oceans) to have a more stable temperature throughout the year due to oceanic moderation, whereas inland locations experience larger temperature swings between summer and winter.
+
+🔍 How it was Tested
+
+Data Sources
+
+You used monthly temperature data (2000–2024) for:
+
+Coastal: San Francisco, Corpus Christi, Mumbai
+
+Inland: Chicago, Columbus, New Delhi
+
+Reference: New York (borderline case)
+
+Each city’s annual temperature range = (max monthly temperature − min monthly temperature) for each year.
+
+Statistical Test
+
+Checked normality (Shapiro-Wilk) and variance equality (Levene).
+
+Since the distributions were non-normal → Mann–Whitney U test was used.
+
+Result:
+p ≈ 0.0000 → extremely significant.
+Mean annual range:
+
+Coastal ≈ 13 °C
+
+Inland ≈ 24 °C
+→ Inland cities show roughly double the seasonal swing.
+
+Effect Size
+
+Cliff’s Delta ≈ −0.9, a very large effect magnitude confirming practical as well as statistical difference.
+
+Visualization
+
+Box-and-swarm plot clearly shows inland distributions shifted upward.
+
+The added New York panel sits visually between coastal and inland means, supporting its “mixed” climate classification.
+
+🧭 Conclusion
+
+The hypothesis is supported (strongly proved).
+Coastal cities indeed show smaller annual temperature ranges than inland cities, both statistically and visually.
+
+The result aligns with physical reasoning: ocean proximity moderates temperature by absorbing heat in summer and releasing it in winter.
+
+❓ Potential Counter-Questions / Challenges
+
+Sample Bias / Representativeness
+
+Only 3 coastal and 3 inland cities were used.
+→ Are they globally representative? Would adding more coastal cities (e.g., Sydney, Tokyo, Lisbon) change the outcome?
+
+Geographical Confounders
+
+Latitude affects temperature range as strongly as distance from coast.
+→ Did you control for latitude or altitude differences?
+
+Temporal Coverage
+
+The period 2000–2024 includes warming trends.
+→ Could long-term climate change or urban heat effects distort “range” rather than pure location effect?
+
+Metric Choice
+
+Using “max − min monthly mean” captures only extremes.
+→ Would using standard deviation or daily averages give a different picture of variability?
+
+Data Consistency
+
+Different data sources (point vs. grid) may have varying spatial resolution.
+→ Are inland and coastal datasets equally precise?
+
+🧩 How to Strengthen It Further
+
+If you want to refine this hypothesis for your report or presentation:
+
+Add more coastal and inland pairs on multiple continents.
+
+Include latitude as a covariate in a regression model.
+
+Test robustness using bootstrapped confidence intervals or two-way ANOVA (Type × Latitude).
