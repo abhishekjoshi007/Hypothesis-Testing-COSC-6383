@@ -1,3 +1,26 @@
+"""
+Script Name: monthly_mean_temperature_distribution_H5.py
+Purpose:
+    Tests Hypothesis H5 – Monthly mean temperatures converge toward a normal
+    distribution due to averaging of daily fluctuations.
+
+Inputs:
+    • Monthly temperature data (2000–2024) for all seven cities.
+
+Outputs:
+    • ../results/H5/temp_distribution_plots.png – Q-Q plots per city
+    • ../results/H5/temp_normality_tests.csv – Shapiro–Wilk results
+
+Methods:
+    • Histogram and Q–Q plots for visual inspection.
+    • Shapiro–Wilk test for normality.
+    • Comparison of skewness and kurtosis.
+
+Expected Result:
+    • Not showing normality.
+"""
+
+
 import os, math, pandas as pd, numpy as np, matplotlib.pyplot as plt, scipy.stats as st
 
 DATA_DIRS = ["../Data Extraction/outputs","../data extraction/outputs","./data","./"]

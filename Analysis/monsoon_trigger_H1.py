@@ -1,3 +1,29 @@
+"""
+Script Name: monsoon_trigger_H1.py
+
+Purpose:
+    Tests Hypothesis H1 – Periods of high temperature and low pressure increase
+    the probability of convective rainfall events (monsoon onset).
+
+Inputs:
+    • City-level monthly data (temperature_c, precipitation_mm, sea_level_pressure_hpa)
+      for Mumbai, New Delhi, Corpus Christi, and others.
+
+Outputs:
+    • ../results/H1/H1_odds_ratio_forest.png – scatter and regression plots
+    • ../results/H1/monsoon_trigger_summary.csv – regression & significance results
+
+Methods:
+    • Pearson correlation between temperature, pressure, and precipitation.
+    • Multiple linear regression to quantify influence of temperature and pressure.
+    • Visualization of precipitation vs. temperature-pressure anomalies.
+
+Expected Result:
+    • Negative correlation between pressure and rainfall.
+    • Positive temperature–precipitation linkage during monsoon triggers.
+"""
+
+
 import os, pandas as pd, numpy as np, matplotlib.pyplot as plt, seaborn as sns
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score

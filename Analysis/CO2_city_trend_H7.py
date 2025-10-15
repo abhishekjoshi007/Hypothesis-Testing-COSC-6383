@@ -1,3 +1,26 @@
+"""
+Script Name: co2_temp_trend_H7.py
+Purpose:
+    Tests Hypothesis H7 – Rising CO₂ levels are correlated with long-term
+    increases in city-level temperature.
+
+Inputs:
+    • Monthly CO₂ concentration and temperature data (2000–2024)
+      for all available cities.
+
+Outputs:
+    • ../results/H7/co2_temp_regression.png – regression plot per city
+    • ../results/H7/co2_temp_corr_summary.csv – correlation and p-values
+
+Methods:
+    • Pearson correlation to quantify association.
+    • Linear regression to model temperature as function of CO₂.
+    • Trend analysis (slope significance).
+
+Expected Result:
+    • Positive CO₂–temperature correlation (r > 0.6, p < 0.05).
+"""
+
 import pandas as pd, numpy as np, statsmodels.api as sm, os, matplotlib.pyplot as plt
 
 OUT_DIR = "../results/H7"

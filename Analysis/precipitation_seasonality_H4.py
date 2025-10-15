@@ -1,3 +1,28 @@
+"""
+Script Name: precipitation_seasonality_H4.py
+Purpose:
+    Tests Hypothesis H4 – Seasonal cycles in precipitation are more pronounced
+    in monsoon regions than in temperate ones.
+
+Inputs:
+    • Monthly precipitation data (2000–2024) for Mumbai, Corpus Christi,
+      Chicago, and San Francisco.
+
+Outputs:
+    • ../results/H4/seasonal_precip_comparison.png – seasonal cycle plots
+    • ../results/H4/precip_fft_analysis.png – frequency decomposition
+    • ../results/H4/precip_summary_stats.csv – amplitude ratios and means
+
+Methods:
+    • Monthly mean aggregation and amplitude ratio computation.
+    • FFT-based detection of seasonal harmonics.
+    • Comparison of seasonal amplitude between regions using ANOVA.
+
+Expected Result:
+    • Monsoon regions show higher seasonal amplitude (p < 0.01).
+"""
+
+
 import os, pandas as pd, numpy as np, xarray as xr, matplotlib.pyplot as plt, seaborn as sns
 from scipy.stats import ttest_rel, wilcoxon
 

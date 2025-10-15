@@ -1,3 +1,26 @@
+"""
+Script Name: convective_feedback_H6.py
+Purpose:
+    Tests Hypothesis H6 – Periods of higher temperature anomalies coincide with
+    reduced precipitation in some cities, reflecting hydrological trade-offs.
+
+Inputs:
+    • Monthly temperature and precipitation data (2000–2024).
+
+Outputs:
+    • ../results/H6/convective_feedback_scatter.png
+    • ../results/H6/convective_feedback_summary.csv
+
+Methods:
+    • Correlation analysis between temperature anomalies and precipitation.
+    • Regression to estimate slope and sign of feedback relationship.
+
+Expected Result:
+    • Negative correlation between temperature anomaly and precipitation,
+      especially in arid and inland locations.
+"""
+
+
 import os, pandas as pd, numpy as np, seaborn as sns, matplotlib.pyplot as plt
 from scipy.stats import pearsonr, wilcoxon
 

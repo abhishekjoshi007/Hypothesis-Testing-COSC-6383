@@ -1,3 +1,29 @@
+"""
+Script Name: analysis_coastal_inland_temp_range_H2.py
+Purpose:
+    Tests Hypothesis H2 – Coastal cities show smaller annual temperature
+    ranges than inland cities.
+
+Inputs:
+    • City-level monthly temperature data for San Francisco, Corpus Christi,
+      Mumbai (Coastal) and Chicago, New Delhi, Columbus (Inland).
+
+Outputs:
+    • ../results/H2/annual_temperature_ranges.csv
+    • ../results/H2/temp_range_comparison.png
+    • ../results/H2/temp_range_summary.csv
+
+Methods:
+    • Shapiro–Wilk test for normality.
+    • Levene’s test for homogeneity of variances.
+    • Mann–Whitney U or t-test for mean comparison.
+    • Cliff’s delta (effect size) and bootstrap CI.
+
+Expected Result:
+    • Coastal cities exhibit significantly smaller annual ranges (p < 0.001).
+"""
+
+
 import os, pandas as pd, numpy as np, matplotlib.pyplot as plt, seaborn as sns
 from scipy.stats import ttest_ind, mannwhitneyu, shapiro, levene
 

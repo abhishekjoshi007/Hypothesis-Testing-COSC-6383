@@ -1,3 +1,26 @@
+"""
+Script Name: point_grid_consistency_H8.py
+Purpose:
+    Tests Hypothesis H8 – Temperature point data track gridded cutout averages
+    more closely than precipitation.
+
+Inputs:
+    • Point-source data (city CSVs)
+    • Gridded NOAA dataset (regional cutouts)
+
+Outputs:
+    • ../results/H8/point_vs_grid_comparison.png
+    • ../results/H8/grid_correlation_summary.csv
+
+Methods:
+    • Pearson correlation between point and grid values.
+    • RMSE computation per variable (temperature vs precipitation).
+    • Visualization of point–grid deviations using scatter and heatmaps.
+
+Expected Result:
+    • Temperature correlations > precipitation (higher spatial consistency).
+"""
+
 import os, pandas as pd, numpy as np, xarray as xr, matplotlib.pyplot as plt, seaborn as sns
 from scipy.stats import ttest_rel, wilcoxon
 
