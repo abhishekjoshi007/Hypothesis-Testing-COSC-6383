@@ -1,4 +1,3 @@
-# H8: Point vs Grid consistency (Temp closer than Precip) — ALL 7 CITIES
 import os, pandas as pd, numpy as np, xarray as xr, matplotlib.pyplot as plt, seaborn as sns
 from scipy.stats import ttest_rel, wilcoxon
 
@@ -34,7 +33,7 @@ def find(path_or_name, roots):
         if os.path.exists(p): return p
     return None
 
-def pick_var(ds, candidates):  # flexible var names
+def pick_var(ds, candidates):  
     for c in candidates:
         if c in ds.data_vars: return c
     return list(ds.data_vars)[0]
@@ -48,7 +47,7 @@ def r2_rmse(a, b):
     rmse = float(np.sqrt(np.mean((a-b)**2)))
     return float(r2), rmse
 
-# open big grids (if present)
+# open big grids 
 T_BIG = find(BIG_TEMP_NC, NC_DIRS)
 P_BIG = find(BIG_PRECIP_NC, NC_DIRS)
 t_big = xr.open_dataset(T_BIG) if T_BIG else None
@@ -97,8 +96,8 @@ def paired(x, y):
     t = ttest_rel(x, y, alternative="greater")
     return ("Wilcoxon> & t>", float(w.pvalue), float(t.pvalue))
 
-res_R2 = paired(stats_df["R2_Temp"],  stats_df["R2_Precip"])         # want R2_Temp > R2_Precip
-res_RM = paired(-stats_df["RMSE_Temp"], -stats_df["RMSE_Precip"])    # want RMSE_Temp < RMSE_Precip
+res_R2 = paired(stats_df["R2_Temp"],  stats_df["R2_Precip"])        
+res_RM = paired(-stats_df["RMSE_Temp"], -stats_df["RMSE_Precip"])   
 
 pd.DataFrame([{
     "n_cities": len(stats_df),

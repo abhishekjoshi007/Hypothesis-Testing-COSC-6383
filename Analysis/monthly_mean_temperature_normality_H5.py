@@ -1,4 +1,3 @@
-# H5: QQ plots of monthly temperature anomalies (clean layout)
 import os, math, pandas as pd, numpy as np, matplotlib.pyplot as plt, scipy.stats as st
 
 DATA_DIRS = ["../Data Extraction/outputs","../data extraction/outputs","./data","./"]
@@ -50,7 +49,6 @@ osm_all=np.sort(st.norm.ppf((np.arange(len(allvals))+0.5)/len(allvals)))
 xlim=(np.percentile(osm_all,1),np.percentile(osm_all,99))
 ylim=(np.percentile(allvals,1),np.percentile(allvals,99))
 
-# grid: 2x4 (up to 8), big fonts, subtle grid
 cities=list(series.keys())
 r,c=2,4
 plt.style.use("default")

@@ -31,7 +31,7 @@ def newey_west_ols(y, X, lags=6):
     X = sm.add_constant(X)
     return sm.OLS(y, X).fit(cov_type='HAC', cov_kwds={'maxlags': lags})
 
-# === Load and unify ===
+
 city_dfs = {c: load_city_data(p) for c, p in files.items()}
 co2_mei = pd.concat([d[['time','co2_ppm','mei']] for d in city_dfs.values() if 'co2_ppm' in d], axis=0).dropna()
 co2_mei = co2_mei.groupby('time').mean().reset_index()
@@ -44,7 +44,7 @@ for c, d in city_dfs.items():
     d.drop(columns=['co2_ppm_g','mei_g'], inplace=True)
     city_dfs[c] = d
 
-# === Regression with Newey–West correction ===
+# Regression with Newey–West correction 
 coefs = []
 for city, df in city_dfs.items():
     df = df.dropna(subset=['temperature_c','co2_ppm','mei']).copy()
@@ -65,7 +65,7 @@ summary = pd.DataFrame(coefs)
 summary.to_csv(f"{OUT_DIR}/H7_regression_summary.csv", index=False)
 print(summary.round(4))
 
-# === Plot: Regression Summary ===
+# Plots
 plt.figure(figsize=(9,6))
 plt.bar(summary['City'], summary['β_CO2'], color='steelblue', edgecolor='black')
 plt.axhline(0, color='gray', lw=0.8)
@@ -76,7 +76,7 @@ plt.tight_layout()
 plt.savefig(f"{OUT_DIR}/H7_CO2_coefficients.png", dpi=300)
 plt.close()
 
-# === Dual-Axis City Plots ===
+# City Plots
 for c, df in city_dfs.items():
     df = df.dropna(subset=['temperature_c','co2_ppm'])
     fig, ax1 = plt.subplots(figsize=(9,5))
@@ -91,7 +91,7 @@ for c, df in city_dfs.items():
     plt.savefig(f"{OUT_DIR}/H7_dual_axis_{c.replace(' ','_')}.png", dpi=300)
     plt.close()
 
-# === Combined Temperature Plot ===
+# Combined Temperature Plot
 plt.figure(figsize=(10,6))
 for c, df in city_dfs.items():
     plt.plot(df['time'], df['temperature_c'], label=c)
@@ -104,7 +104,7 @@ plt.tight_layout()
 plt.savefig(f"{OUT_DIR}/H7_combined_temperature_trends.png", dpi=400)
 plt.close()
 
-# === Combined CO2 Plot (Global Mean Shared) ===
+# Combined CO2 Plot (Global Mean Shared)
 plt.figure(figsize=(10,6))
 global_co2 = co2_mei.copy()
 plt.plot(global_co2['time'], global_co2['co2_ppm'], color='tab:purple', lw=2.2)
@@ -116,7 +116,7 @@ plt.tight_layout()
 plt.savefig(f"{OUT_DIR}/H7_combined_CO2_global.png", dpi=400)
 plt.close()
 
-# === Combined CO2 Plot (City-Specific, if different) ===
+# Combined CO2 Plot (City-Specific, if different)
 plt.figure(figsize=(10,6))
 for c, df in city_dfs.items():
     if 'co2_ppm' in df:

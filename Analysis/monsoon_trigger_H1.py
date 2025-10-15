@@ -1,4 +1,3 @@
-# H1: Monsoon trigger (high temp + low SLP → convective rain)
 import os, pandas as pd, numpy as np, matplotlib.pyplot as plt, seaborn as sns
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
@@ -77,7 +76,6 @@ for city, fname in FILES.items():
         proba = clf.predict_proba(Xz)[:,1]
         auc   = roc_auc_score(y, proba)
 
-        # OR per 1 std increase (because features are z-scored)
         or_temp = float(np.exp(clf.coef_[0,0]))
         or_slp  = float(np.exp(clf.coef_[0,1]))
 

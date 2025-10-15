@@ -1,8 +1,6 @@
-# h8_point_vs_grid_consistency.py
 import os, pandas as pd, numpy as np, xarray as xr, matplotlib.pyplot as plt, seaborn as sns
 from scipy.stats import ttest_rel, wilcoxon
 
-# ---- config (edit paths if needed) ----
 DATA_DIRS = ["../data extraction/outputs", "../Data Extraction/outputs", "./data"]
 OUT_DIR = "../results/H8"; os.makedirs(OUT_DIR, exist_ok=True)
 TEMP_NC, PRECIP_NC = "temp_grid_2000_2024.nc", "precip_grid_2000_2024.nc"
@@ -13,13 +11,12 @@ CITIES = {
     "New Delhi":      ("new_delhi_india_all_variables.csv",       28.6139,  77.2090),
     "San Francisco":  ("san_francisco_ca_usa_all_variables.csv",  37.7749, -122.4194),
     "Chicago":        ("chicago_il_usa_all_variables.csv",        41.8781,  -87.6298),
-    # add if desired:
+
     # "New York":     ("new_york_ny_usa__all_variables.csv",      40.7128,  -74.0060),
     # "Columbus":     ("columbus_oh_usa__all_variables.csv",      39.9612,  -82.9988),
     # "Mumbai":       ("mumbai_mh_india__all_variables.csv",      19.0760,   72.8777),
 }
 
-# ---- helpers ----
 def find_path(fname):
     for d in DATA_DIRS:
         p = os.path.join(d, fname)
@@ -36,16 +33,16 @@ def r2_rmse(a, b):
     rmse = float(np.sqrt(np.mean((a-b)**2)))
     return float(r2), rmse
 
-# ---- load grids ----
+# load grids 
 tpath, ppath = find_path(TEMP_NC), find_path(PRECIP_NC)
 if not (tpath and ppath): raise SystemExit("NetCDF grids not found. Check TEMP_NC/PRECIP_NC paths.")
 t_ds, p_ds = xr.open_dataset(tpath), xr.open_dataset(ppath)
-t_var = list(t_ds.data_vars)[0]   # e.g., 'tavg'
-p_var = list(p_ds.data_vars)[0]   # e.g., 'precip'
+t_var = list(t_ds.data_vars)[0]   
+p_var = list(p_ds.data_vars)[0]   
 grid_lon_0360 = float(t_ds.lon.min()) >= 0
 
-# ---- compute per-city metrics ----
-rows, scatters = [], []  # metrics and sample pairs for plotting
+# compute per-city metrics 
+rows, scatters = [], []  
 for city, (csvfile, lat, lon) in CITIES.items():
     cpath = find_path(csvfile)
     if not cpath: continue
@@ -55,22 +52,22 @@ for city, (csvfile, lat, lon) in CITIES.items():
     sP = df["precipitation_mm"].asfreq("MS")
 
     glon = (lon + 360) if (grid_lon_0360 and lon < 0) else lon
-    gT = t_ds[t_var].sel(lat=lat, lon=glon, method="nearest").to_series().asfreq("MS")  # mean already monthly
-    gP = p_ds[p_var].sel(lat=lat, lon=glon, method="nearest").to_series().asfreq("MS")  # sum vs mean handled upstream
+    gT = t_ds[t_var].sel(lat=lat, lon=glon, method="nearest").to_series().asfreq("MS")  
+    gP = p_ds[p_var].sel(lat=lat, lon=glon, method="nearest").to_series().asfreq("MS")  
 
     idx = sT.index.intersection(gT.index).intersection(sP.index).intersection(gP.index)
     r2_T, rmse_T = r2_rmse(sT.loc[idx], gT.loc[idx])
     r2_P, rmse_P = r2_rmse(sP.loc[idx], gP.loc[idx])
 
     rows.append({"City":city, "R2_Temp":r2_T, "R2_Precip":r2_P, "RMSE_Temp":rmse_T, "RMSE_Precip":rmse_P})
-    # keep small sample for scatter fig
+
     scatters.append((city, sT.loc[idx], gT.loc[idx], sP.loc[idx], gP.loc[idx]))
 
 stats_df = pd.DataFrame(rows).dropna()
 stats_df.to_csv(os.path.join(OUT_DIR, "point_vs_grid_stats.csv"), index=False)
 if stats_df.empty: raise SystemExit("No stats computed. Check inputs/columns.")
 
-# ---- paired tests (Temp vs Precip across cities) ----
+# paired tests (Temp vs Precip across cities) 
 def paired_test(x, y):
     d = (x - y).dropna()
     if len(d) < 3: return ("NA", np.nan, np.nan)
@@ -83,7 +80,7 @@ def paired_test(x, y):
         return ("Wilcoxon_failed", np.nan, np.nan)
 
 res_R2 = paired_test(stats_df["R2_Temp"], stats_df["R2_Precip"])
-res_RM = paired_test(-stats_df["RMSE_Temp"], -stats_df["RMSE_Precip"])  # “greater” means smaller RMSE
+res_RM = paired_test(-stats_df["RMSE_Temp"], -stats_df["RMSE_Precip"])  
 
 pd.DataFrame([{
     "n_cities": len(stats_df),
@@ -93,7 +90,7 @@ pd.DataFrame([{
     "RMSE_Temp_mean": stats_df["RMSE_Temp"].mean(), "RMSE_Precip_mean": stats_df["RMSE_Precip"].mean(),
 }]).to_csv(os.path.join(OUT_DIR, "H8_test_summary.csv"), index=False)
 
-# ---- dumbbell plot (R²) ----
+# dumbbell plot (R²) 
 df_m = stats_df.melt(id_vars="City", value_vars=["R2_Precip","R2_Temp"],
                      var_name="Metric", value_name="R2")
 order = stats_df.sort_values("R2_Temp")["City"]
@@ -109,7 +106,7 @@ plt.legend(title="", loc="lower right")
 plt.tight_layout()
 plt.savefig(os.path.join(OUT_DIR, "H8_dumbbell_R2.png"), dpi=300)
 
-# ---- scatter examples (first 4 cities) ----
+# scatter (first 4 cities) 
 n = min(4, len(scatters))
 fig, axes = plt.subplots(n, 2, figsize=(8, 3*n), dpi=180, constrained_layout=True)
 for i in range(n):

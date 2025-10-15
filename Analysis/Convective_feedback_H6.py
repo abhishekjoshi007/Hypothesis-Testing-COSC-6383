@@ -1,4 +1,3 @@
-# H6: Convective feedback (hotter months ↔ reduced precip)
 import os, pandas as pd, numpy as np, seaborn as sns, matplotlib.pyplot as plt
 from scipy.stats import pearsonr, wilcoxon
 
@@ -60,12 +59,10 @@ for city,fname in FILES.items():
 res = pd.DataFrame(rows)
 res.to_csv(os.path.join(OUT_DIR,"H6_convective_feedback_summary.csv"),index=False)
 
-# Sign test (how many negative correlations)
 neg = (res["r_temp_precip"]<0).sum()
 n = len(res)
 p_sign = wilcoxon(res["r_temp_precip"], alternative="less")[1] if n>1 else np.nan
 
-# --- Figure 1: City scatter mini-panels ---
 ncols = 3
 nrows = int(np.ceil(n / ncols))
 fig, axes = plt.subplots(nrows, ncols, figsize=(11, 3.5*nrows), dpi=160)
@@ -92,7 +89,6 @@ fig.suptitle("H6: Convective Feedback — Temp vs Precip Anomalies (2000–2024)
 fig.tight_layout()
 plt.savefig(os.path.join(OUT_DIR,"H6_city_scatter.png"),dpi=300,bbox_inches="tight")
 
-# --- Figure 2: Violin plot of correlation coefficients ---
 plt.figure(figsize=(6,4),dpi=200)
 sns.violinplot(y=res["r_temp_precip"], inner="point", color="skyblue")
 plt.axhline(0, ls="--", c="k")
@@ -108,7 +104,8 @@ if skipped:
     print("\n[SKIPPED]")
     for c,why in skipped: print(f" - {c}: {why}")
 print("\nSaved to:", OUT_DIR)
-# H6: Convective feedback (hotter months ↔ reduced precip)
+
+# Convective feedback (hotter months ↔ reduced precip)
 import os, pandas as pd, numpy as np, seaborn as sns, matplotlib.pyplot as plt
 from scipy.stats import pearsonr, wilcoxon
 
@@ -170,12 +167,10 @@ for city,fname in FILES.items():
 res = pd.DataFrame(rows)
 res.to_csv(os.path.join(OUT_DIR,"H6_convective_feedback_summary.csv"),index=False)
 
-# Sign test (how many negative correlations)
 neg = (res["r_temp_precip"]<0).sum()
 n = len(res)
 p_sign = wilcoxon(res["r_temp_precip"], alternative="less")[1] if n>1 else np.nan
 
-# --- Figure 1: City scatter mini-panels ---
 ncols = 3
 nrows = int(np.ceil(n / ncols))
 fig, axes = plt.subplots(nrows, ncols, figsize=(11, 3.5*nrows), dpi=160)
@@ -202,7 +197,6 @@ fig.suptitle("H6: Convective Feedback — Temp vs Precip Anomalies (2000–2024)
 fig.tight_layout()
 plt.savefig(os.path.join(OUT_DIR,"H6_city_scatter.png"),dpi=300,bbox_inches="tight")
 
-# --- Figure 2: Violin plot of correlation coefficients ---
 plt.figure(figsize=(6,4),dpi=200)
 sns.violinplot(y=res["r_temp_precip"], inner="point", color="skyblue")
 plt.axhline(0, ls="--", c="k")
